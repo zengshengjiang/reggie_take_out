@@ -35,14 +35,5 @@ mybatis-plus:
 
 #图片资源存放位置
 reggin:
-
-#  path: src\main\resources\img\
-  path: D:\Desktop\reggie_take_out\src\main\resources\img\
-
-#  path: src/main/resources/img/
-
-
-
-#  path:  /root/zsj_data/img/  #linux系统下
-#  path:  usr/local/img    #linux系统下
+  path:  D:\Desktop\reggie_take_out\src\main\resources\img\
 
