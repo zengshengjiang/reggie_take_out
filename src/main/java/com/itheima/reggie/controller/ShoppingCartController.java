@@ -88,7 +88,8 @@ public class ShoppingCartController {
      *
      * @return
      */
-    @DeleteMapping("/delete")
+    //@DeleteMapping("/delete")
+    @DeleteMapping("/clean")
     public R<String> clean() {
         LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
         

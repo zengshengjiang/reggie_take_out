@@ -45,7 +45,7 @@ public class CommonController {
         //使用UUID重新生成文件名，防止文件名称重复造成覆盖
         String fileName = UUID.randomUUID().toString() + suffix;
         
-        //创建一共目录对象
+        //创建一个目录对象
         File dir = new File(basePath);
         //判断当前目录是否存在
         if (!dir.exists()) {

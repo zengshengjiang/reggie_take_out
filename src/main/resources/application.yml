@@ -1,11 +1,11 @@
 server:
-  port: 80
+  port: 8080
 spring:
   #邮箱发送消息
   mail:
     host: smtp.qq.com
     username: 2982419675@qq.com
-    password: xuceilxjvnsndfaa
+    password: asdlqdpqurpiddbf
     to: 1270392431@qq.com
   #应用名称
   application:
@@ -35,5 +35,13 @@ mybatis-plus:
 
 #图片资源存放位置
 reggin:
-  path:  D:\Desktop\reggie_take_out\src\main\resources\img\
+
+#  path: src\main\resources\img\
+#  path: D:\Desktop\Java学习\reggie_take_outsrc\main\resources\img\
+  path: src\main\resources\img\
+
+
+
+#  path:  /root/zsj_data/img/  #linux系统下
+#  path:  usr/local/img    #linux系统下
 

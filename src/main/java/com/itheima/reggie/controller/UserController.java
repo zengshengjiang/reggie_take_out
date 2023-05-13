@@ -47,17 +47,21 @@ public class UserController {
         if (StringUtils.isNotEmpty(phone)) {
             //生成随机四位验证码
             String code = ValidateCodeUtils.generateValidateCode(4).toString();
+            
+             //重新设置验证码
+            //String  code = "1234";
+             
             //发送短信服务 -- 用邮箱代替
-            //SMSUtils.sendMessage("瑞吉外卖", "", phone, code);
+            SMSUtils.sendMessage("瑞吉外卖", "", phone, code);
             log.info("验证码:{}", code);
             //发送邮件
-            sendMailUtils.sendMail(phone, code);
+            //sendMailUtils.sendMail(phone, code);
             log.info("验证码:邮件已发送");
             
             //需要将生成的验证码保存
-            //session.setAttribute(phone, code);
+            session.setAttribute(phone, code);
             
-            //将生成的验证码吗缓存到redis中，并且设置有效期为5分钟
+            //将生成的验证码缓存到redis中，并且设置有效期为5分钟
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
             
             
@@ -85,7 +89,6 @@ public class UserController {
         //Object codeInSession = session.getAttribute(phone);
         //从redis获取缓存验证码
         Object codeInSession = redisTemplate.opsForValue().get(phone);
-        
         
         if (codeInSession != null && codeInSession.equals(code)) {
             LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();

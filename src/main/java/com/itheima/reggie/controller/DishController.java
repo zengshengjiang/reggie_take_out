@@ -65,7 +65,6 @@ public class DishController {
     
     /**
      * 菜品信息分页查询
-     *
      * @param page
      * @param pageSize
      * @param name
