@@ -20,19 +20,14 @@ import java.util.List;
 public class AddressBookController {
     @Autowired
     private AddressBookService addressBookService;
-    
-    
-    
     /**
      * 新增
-     *
      * @param addressBook
      * @return
      */
     @PostMapping
     public R<AddressBook> save(@RequestBody AddressBook addressBook) {
         addressBook.setUserId(BaseContext.getCurrentId());
-        
         
         addressBookService.save(addressBook);
         return R.success(addressBook);

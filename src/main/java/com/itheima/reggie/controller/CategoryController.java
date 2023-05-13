@@ -1,6 +1,7 @@
 package com.itheima.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itheima.reggie.common.R;
 import com.itheima.reggie.entity.Category;
@@ -40,7 +41,7 @@ public class CategoryController {
      * @return
      */
     @GetMapping("/page")
-    public R<Page> page(int page, int pageSize) {
+    public R<IPage> page(int page, int pageSize) {
         //分页构造器
         Page<Category> pageInfo = new Page<>(page, pageSize);
         //条件构造器
@@ -80,7 +81,6 @@ public class CategoryController {
     
     /**
      * 根据条件查询分类数据
-     *
      * @param category
      * @return
      */
