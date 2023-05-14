@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 80
 spring:
   #      邮箱发送消息
   mail:
@@ -35,8 +35,9 @@ mybatis-plus:
 reggin:
 
 #  path: src\main\resources\img\
-#  path: D:\Desktop\Java学习\reggie_take_outsrc\main\resources\img\
-  path: src\main\resources\img\
+  path: D:\Desktop\reggie_take_out\src\main\resources\img\
+
+#  path: src/main/resources/img/
 
 
 

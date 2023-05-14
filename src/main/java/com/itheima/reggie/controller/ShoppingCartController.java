@@ -1,6 +1,7 @@
 package com.itheima.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.itheima.reggie.common.BaseContext;
 import com.itheima.reggie.common.R;
 import com.itheima.reggie.entity.ShoppingCart;
@@ -67,6 +68,61 @@ public class ShoppingCartController {
     }
     
     /**
+     * 减少数量
+     *
+     * @param shoppingCart
+     * @return
+     */
+    @PostMapping("/sub")
+    public R<ShoppingCart> sub(@RequestBody ShoppingCart shoppingCart) {
+        System.out.println(shoppingCart);
+        log.info(shoppingCart.toString());
+        //用户id
+        Long currentId = BaseContext.getCurrentId();
+        shoppingCart.setUserId(currentId);
+        
+        
+        Long dishId = shoppingCart.getDishId();
+        
+        LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ShoppingCart::getUserId, currentId);
+        
+        //判断传入的是菜品还是套餐
+        if (dishId != null) {
+            //添加到购物车的是菜品
+            queryWrapper.eq(ShoppingCart::getDishId, dishId);
+        } else {
+            //添加到购物车的是套餐
+            queryWrapper.eq(ShoppingCart::getSetmealId, shoppingCart.getSetmealId());
+        }
+        //查询菜品或者套餐是否在购物车中
+        ShoppingCart cartServiceOne = shoppingCartService.getOne(queryWrapper);
+        
+        //在购物车中
+        if (cartServiceOne != null) {
+            Integer number = cartServiceOne.getNumber();
+            
+            if (number > 0) {
+                int num = number - 1;
+                cartServiceOne.setNumber(num);
+                //如果数量为0，则删除，否则就更新
+                if (num == 0){
+                    shoppingCartService.removeById(cartServiceOne);
+                }else{
+                    shoppingCartService.updateById(cartServiceOne);
+                }
+                
+              
+            }
+        } else {
+            return R.error("该商品不在购物车内");
+        }
+        
+        return R.success(cartServiceOne);
+    }
+    
+    
+    /**
      * 查看购物车
      *
      * @return
@@ -93,17 +149,12 @@ public class ShoppingCartController {
     public R<String> clean() {
         LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
         
-        queryWrapper.eq(ShoppingCart::getUserId,BaseContext.getCurrentId());
+        queryWrapper.eq(ShoppingCart::getUserId, BaseContext.getCurrentId());
         
         shoppingCartService.remove(queryWrapper);
-
+        
         return R.success("清空购物车成功");
     }
-    
-    
-    
-    
-    
     
     
 }

@@ -52,10 +52,10 @@ public class UserController {
             //String  code = "1234";
              
             //发送短信服务 -- 用邮箱代替
-            SMSUtils.sendMessage("瑞吉外卖", "", phone, code);
+            //SMSUtils.sendMessage("瑞吉外卖", "", phone, code);
             log.info("验证码:{}", code);
             //发送邮件
-            //sendMailUtils.sendMail(phone, code);
+            sendMailUtils.sendMail(phone, code);
             log.info("验证码:邮件已发送");
             
             //需要将生成的验证码保存

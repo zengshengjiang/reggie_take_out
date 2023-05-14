@@ -33,8 +33,15 @@ public class SendMailUtils {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(context);
-        
-        javaMailSender.send(message);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                javaMailSender.send(message);
+            }
+        }).start();
+         context = "";
+         subject = "";
+       
         
     }
 }

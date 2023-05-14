@@ -40,6 +40,7 @@ public class LoginCheckFilter implements Filter {
                 "/index.html",
                 "/user/sendMsg",
                 "/user/login",
+                "/common/**"
         };
         boolean check = check(urls, requestURI);
         
