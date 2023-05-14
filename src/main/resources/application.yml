@@ -16,13 +16,9 @@ spring:
       url: jdbc:mysql://localhost:3306/db_reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: "123456"
-  #redis配置
-  redis:
-    port: 6379
-    host: 127.0.0.1
-    database: 0
 
-#mybatisPlus
+
+
 mybatis-plus:
   configuration:
     #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
@@ -33,15 +29,6 @@ mybatis-plus:
       id-type: ASSIGN_ID  #雪花算法形成id
 
 reggin:
-
-#  path: src\main\resources\img\
-  path: D:\Desktop\reggie_take_out\src\main\resources\img\
-
-#  path: src/main/resources/img/
-
-
-
-#  path:  /root/zsj_data/img/  #linux系统下
-#  path:  usr/local/img    #linux系统下
+  path:  D:\Desktop\reggie_take_out\src\main\resources\img\
 
 
